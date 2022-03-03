@@ -39,7 +39,7 @@
 
 #define UDP_DEFAULT_HOST        "localhost"
 #define UDP_DEFAULT_PORT        5004
-
+#define UDP_DEFAULT_TEST        5008
 /* UDPSink signals and args */
 enum
 {
@@ -53,6 +53,7 @@ enum
   PROP_HOST,
   PROP_PORT,
   PROP_URI,
+  PROP_TEST,
   /* FILL ME */
 };
 
@@ -92,6 +93,11 @@ gst_udpsink_class_init (GstUDPSinkClass * klass)
   g_object_class_install_property (G_OBJECT_CLASS (klass), PROP_PORT,
       g_param_spec_int ("port", "port", "The port to send the packets to",
           0, 65535, UDP_DEFAULT_PORT,
+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_property (G_OBJECT_CLASS (klass), PROP_TEST,
+      g_param_spec_int ("test", "test", "The test param",
+          0, 65535, UDP_DEFAULT_TEST,
           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   gst_element_class_set_static_metadata (gstelement_class, "UDP packet sender",
